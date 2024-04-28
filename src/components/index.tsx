@@ -1,4 +1,5 @@
-import Body  from "./global/body";
-import Paragraph from "./global/paragraph";
+import Body  from "./body";
+import Paragraph from "./paragraph";
+import AppLoader from "./app-loader";
 
-export { Body, Paragraph };
+export { Body, Paragraph, AppLoader };

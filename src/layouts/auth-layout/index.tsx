@@ -1,24 +1,31 @@
 /**
  * Native dependencies 
  */ 
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Button, Text } from 'react-native';
 /**
  * External dependencies 
  */ 
-import { Outlet, Link, redirect } from 'react-router-native';
+import { Outlet } from 'react-router-native';
+import { useSelector, useDispatch } from 'react-redux';
 /**
  * Internal dependencies 
  */ 
-import { Body } from '@src/components';
 import withValidateToken from './with-validate-token';
+import { selectCount, increment } from '@src/services/data/users';
 
 const AuthLayout = withValidateToken(function() {
+    const count = useSelector(selectCount);
+    const dispatch = useDispatch();
+
     return (
-        <Body>
-            <ScrollView contentInsetAdjustmentBehavior="automatic">
-                <Outlet/>
-            </ScrollView>
-        </Body>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+            <Outlet/>
+            <Text>{count}</Text>
+            <Button
+                title="Increment"
+                onPress={() => dispatch(increment())}
+            />
+        </ScrollView>
     )
 })
 

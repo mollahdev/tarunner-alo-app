@@ -1,28 +1,20 @@
 /**
- * Native dependencies 
- */
-import { Text } from 'react-native';
-/**
  * External dependencies 
  */ 
-import { Link } from "react-router-native";
+import { Provider } from 'react-redux'
 /**
  * Internal dependencies 
  */ 
+import { store } from '@src/services/data';
 import RouterProvider from '@src/router';
+import { Body } from '@src/components';
 
 export default function App() {
   return (
-    <RouterProvider>
-        <Link to="/">
-            <Text>Home</Text>
-        </Link>
-        <Link to="/login">
-            <Text>Login</Text>
-        </Link>
-        <Link to="/register">
-            <Text>Register</Text>
-        </Link>
-    </RouterProvider>
+    <Provider store={store}>
+      <Body>
+        <RouterProvider/>
+      </Body>
+    </Provider>
   );
 }
