@@ -4,13 +4,13 @@ import type { RootState } from '@src/services/data'
 interface InitialStateInterface {
   value: number;
   users: UserInterface[] | null;
-  currentUser: UserInterface | null;
+  currentUser: UserInterface | null | [];
 }
 
 const initialState: InitialStateInterface = {
   value: 0,
   users: null,
-  currentUser: null 
+  currentUser: null
 }
 
 export const usersSlice = createSlice({

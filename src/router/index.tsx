@@ -18,11 +18,11 @@ export default function RouterProvider( props: PropsWithChildren ) {
             { props.children }
             <Routes>
                 <Route path="/" element={<AuthLayout/>}>
-                <Route index element={<Home/>} />
+                    <Route index element={<Home/>} />
                 </Route>
                 <Route path="/" element={<PublicLayout/>}>
-                <Route path="login" element={<Login/>} />
-                <Route path="register" element={<Register/>} />
+                    <Route path="login" element={<Login/>} />
+                    <Route path="register" element={<Register/>} />
                 </Route>
             </Routes>
         </NativeRouter>
