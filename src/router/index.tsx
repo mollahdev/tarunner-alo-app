@@ -10,7 +10,7 @@ import { NativeRouter, Routes, Route } from "react-router-native";
  * Internal dependencies 
  */ 
 import { Home, Login, Register } from '@src/pages';
-import { AuthLayout, PublicLayout } from '@src/layouts';
+import { AuthLayout, AuthEntry } from '@src/layouts';
 
 export default function RouterProvider( props: PropsWithChildren ) {
     return (
@@ -20,7 +20,7 @@ export default function RouterProvider( props: PropsWithChildren ) {
                 <Route path="/" element={<AuthLayout/>}>
                     <Route index element={<Home/>} />
                 </Route>
-                <Route path="/" element={<PublicLayout/>}>
+                <Route path="/" element={<AuthEntry/>}>
                     <Route path="login" element={<Login/>} />
                     <Route path="register" element={<Register/>} />
                 </Route>

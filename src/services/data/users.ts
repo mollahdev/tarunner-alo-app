@@ -10,7 +10,7 @@ interface InitialStateInterface {
 const initialState: InitialStateInterface = {
   value: 0,
   users: null,
-  currentUser: null
+  currentUser: []
 }
 
 export const usersSlice = createSlice({
