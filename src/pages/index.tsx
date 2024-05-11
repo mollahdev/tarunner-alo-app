@@ -1,5 +1,6 @@
-import Home from '@src/pages/home';
-import Login from '@src/pages/login';
-import Register from '@src/pages/register';
+import Home from './home';
+import Login from './login';
+import Register from './register';
+import MemberList from './member-list';
 
-export { Home, Login, Register}
+export { Home, Login, Register, MemberList }
