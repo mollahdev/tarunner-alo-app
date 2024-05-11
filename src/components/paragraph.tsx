@@ -5,7 +5,7 @@ import { ReactNativeStyle } from "@emotion/native";
 const Paragraph = styled(Text)( ( props: { sx?: ReactNativeStyle } ) => {
     return {
         fontSize: 16,
-        color: '#101010',
+        color: '#49687e',
         ...(props.sx  ? props.sx : {})
     }
 } );

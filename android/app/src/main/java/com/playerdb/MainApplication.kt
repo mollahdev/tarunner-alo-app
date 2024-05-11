@@ -1,4 +1,4 @@
-package com.playerdb
+package com.tarunneralo
 
 import android.app.Application
 import com.facebook.react.PackageList

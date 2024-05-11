@@ -1,7 +1,7 @@
 /**
  * Native dependencies 
  */ 
-import { ScrollView, Image } from 'react-native';
+import { ScrollView, Image, View } from 'react-native';
 import { useState } from 'react';
 /**
  * External dependencies 
@@ -25,16 +25,21 @@ const AuthEntry = withValidateToken(function() {
     return (
         <ScrollView contentContainerStyle={{flex: 1, justifyContent: 'center'}} contentInsetAdjustmentBehavior="automatic">
             <Wrapper>
-                <Image
-                    source={require('@assets/images/logo.jpeg')}
-                    style={{ width: 150, height: 150}}
-                />
-                <Paragraph sx={{
-                    fontSize: 24,
-                    fontWeight: 600,
-                    color: '#49687e',
-                }}>{title}</Paragraph>
-                <Outlet context={ contextValues } />
+                <View style={{alignItems: 'center', gap: 20}}>
+                    <Image
+                        source={require('@assets/images/logo.jpeg')}
+                        style={{ width: 150, height: 150}}
+                    />
+                    <Paragraph 
+                        sx={{
+                            fontSize: 24,
+                            fontFamily: 'Rubik-Bold',
+                        }}
+                    >{title}</Paragraph>
+                </View>
+                <View>
+                    <Outlet context={ contextValues } />
+                </View>
             </Wrapper>
         </ScrollView>
     )

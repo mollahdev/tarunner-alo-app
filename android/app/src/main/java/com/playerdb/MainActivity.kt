@@ -1,4 +1,4 @@
-package com.playerdb
+package com.tarunneralo
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
