@@ -6,22 +6,15 @@ import { useLayoutEffect } from 'react';
 /**
  * External dependencies  
  */ 
-import { useNavigate, useOutletContext, Link } from 'react-router-native';
+import { useNavigate, Link } from 'react-router-native';
 /**
  * Internal dependencies 
  */
 import storage from '@src/services/storage';
-import type { AuthEntryContext } from '@src/layouts/auth-entry/types';
 import { Paragraph, AuthInput, Button } from '@src/components';
 
 export default function Login() {
     const navigate = useNavigate();
-    const [ setTtitle ] = useOutletContext<AuthEntryContext>();
-
-    useLayoutEffect(() => {
-        setTtitle('Sign In to Tarunner Alo');
-    }, [])
-
 
     const onLogin = async () => {
         storage.set('token', '123456');

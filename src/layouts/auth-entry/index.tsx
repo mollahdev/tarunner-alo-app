@@ -2,7 +2,6 @@
  * Native dependencies 
  */ 
 import { ScrollView, Image, View } from 'react-native';
-import { useState } from 'react';
 /**
  * External dependencies 
  */ 
@@ -10,7 +9,6 @@ import { Outlet, useLocation } from 'react-router-native';
 /**
  * Internal dependencies 
  */ 
-import type { AuthEntryContext } from './types';
 import withValidateToken from './with-validate-token'
 import { Wrapper, Divider, DividerLine, ViewMemberButton } from './style';
 import { Paragraph } from '@src/components';
@@ -18,16 +16,11 @@ import RegisterFooter from './register-footer';
 import SignInFooter from './sign-in-footer';
 
 const AuthEntry = withValidateToken(function() {
-    const [ title, setTitle ] = useState('Sign In to Tarunner Alo');
     const location = useLocation();
     const isRegisterPage = location.pathname === '/register';
 
-    const contextValues = [
-        setTitle
-    ] satisfies AuthEntryContext
-
     return (
-        <ScrollView contentContainerStyle={{justifyContent: 'center'}} contentInsetAdjustmentBehavior="automatic">
+        <ScrollView contentContainerStyle={{justifyContent: 'center',}} contentInsetAdjustmentBehavior="automatic">
             <Wrapper>
                 <View style={{alignItems: 'center', gap: 20, marginBottom: 20}}>
                     <Image
@@ -39,10 +32,12 @@ const AuthEntry = withValidateToken(function() {
                             fontSize: 24,
                             fontFamily: 'Rubik-Bold',
                         }}
-                    >{title}</Paragraph>
+                    >
+                        { isRegisterPage ? 'Become a Member Now' : 'Sign In to Tarunner Alo'}
+                    </Paragraph>
                 </View>
                 <View>
-                    <Outlet context={ contextValues } />
+                    <Outlet/>
                 </View>
                 <Divider>
                     <DividerLine />
@@ -54,8 +49,18 @@ const AuthEntry = withValidateToken(function() {
                         }}
                     >Or try other options</Paragraph>
                 </Divider>
-                <View style={{gap: 14}}>
-                    <ViewMemberButton to="/member-list" underlayColor="transparent">
+                <View style={{gap: 7, flexDirection: 'row'}}>
+                    <ViewMemberButton style={{width: '48%'}} to="/member-list" underlayColor="transparent">
+                        <Paragraph sx={{color: '#e64949', fontFamily: 'Rubik-SemiBold', fontSize: 16, alignItems: 'center'}}>
+                            <Image 
+                                style={{
+                                    width: 20,
+                                    height: 20,
+                                }}
+                                source={require('@assets/images/bell.png')} 
+                            />  Whats's New</Paragraph>
+                    </ViewMemberButton>
+                    <ViewMemberButton style={{width: '48%'}} to="/member-list" underlayColor="transparent">
                         <Paragraph sx={{color: '#e64949', fontFamily: 'Rubik-SemiBold', fontSize: 16, alignItems: 'center'}}>
                             <Image 
                                 style={{
@@ -63,10 +68,10 @@ const AuthEntry = withValidateToken(function() {
                                     height: 20,
                                 }}
                                 source={require('@assets/images/user-add.png')} 
-                            />  See Our Members</Paragraph>
+                            />  See Members</Paragraph>
                     </ViewMemberButton>
-                    { isRegisterPage ? <SignInFooter /> : <RegisterFooter />}
                 </View>
+                { isRegisterPage ? <SignInFooter /> : <RegisterFooter />}
             </Wrapper>
         </ScrollView>
     )

@@ -1,4 +1,4 @@
-import { View, Image, Button } from 'react-native';
+import { View, Button } from 'react-native';
 import storage from '@src/services/storage';
 import { useNavigate } from 'react-router-native';
 
@@ -12,10 +12,6 @@ export default function Register() {
 
     return (
         <View>
-            <Image
-                source={require('@assets/images/logo.jpeg')}
-                style={{ width: 150, height: 150}}
-            />
             <Button 
                 onPress={onRegister}
                 title="Register"

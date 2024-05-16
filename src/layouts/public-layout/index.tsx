@@ -1,8 +1,4 @@
 /**
- * Native dependencies 
- */ 
-import { ScrollView } from 'react-native';
-/**
  * External dependencies 
  */ 
 import { Outlet } from 'react-router-native';
@@ -12,11 +8,7 @@ import { Outlet } from 'react-router-native';
 import withValidateToken from './with-validate-token'
 
 const PublicLayout = withValidateToken(function() {
-    return (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <Outlet/>
-        </ScrollView>
-    )
+    return <Outlet/>
 })
 
 export default PublicLayout;

@@ -1,15 +1,22 @@
-import { View, Text } from 'react-native';
-import { Link } from 'react-router-native';
+import { ScrollView } from 'react-native';
 /**
  * Internal dependencies 
  */ 
-import { Paragraph } from '@src/components';
+import Header from './header';
+import Data from './data'
+import Item from './Item';
+import { ListWrapper } from './style';
 
 export default function MemberList() {
     return (
-        <View>
-            <Link to="/login"><Text>Go Back</Text></Link>
-            <Paragraph>Members Page</Paragraph>
-        </View>
+        <ScrollView
+            stickyHeaderIndices={[0]}
+            showsVerticalScrollIndicator
+        >
+            <Header/>
+            <ListWrapper>
+                { Data.map((item, index) => <Item key={index} {...item}/> )}
+            </ListWrapper>
+        </ScrollView>
     )
 }
