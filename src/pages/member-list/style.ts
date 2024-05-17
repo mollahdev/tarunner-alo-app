@@ -28,17 +28,50 @@ export const BackButton = styled.Text`
 `;
 
 export const ListWrapper = styled.View`
-    padding: 16px;
+    padding: 10px;
     background-color: #f9fafb;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
 `;
 
 export const Card = styled.View`
-    padding: 16px;
     background-color: #fff;
     border-radius: 4px;
-    flex: 1 1 150px;
+    flex: 1 0 150px;
     height: auto;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    align-items: center;
+`;
+
+export const ModalOverlay = styled.View`
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    flex: 1;
+    bottom: 0;
+`;
+
+export const ModalOverlayClose = styled.Pressable`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+`;
+
+export const ModalContent = styled.View`
+    background-color: #fff;
+    min-height: 450px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px;
 `;

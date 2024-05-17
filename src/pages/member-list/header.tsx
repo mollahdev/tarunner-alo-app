@@ -1,14 +1,42 @@
-import { Link } from 'react-router-native';
-import { HeaderWrapper, SearchInput, BackButton } from './style';
+/**
+ * Native dependencies 
+ */ 
 import { View, StyleSheet } from 'react-native';
+import type { PropsWithChildren } from "react";
+import type { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+/**
+ * External dependencies 
+ */ 
+import { Link } from 'react-router-native';
+/**
+ * Internal dependencies 
+ */
+import { HeaderWrapper, SearchInput, BackButton } from './style';
 
-export default function Header() {
+
+type PropsType = {
+    search: string;
+    setSearch: (ev: string) => void;
+    searchFocused: (ev: boolean) => void;
+}
+
+export default function Header( props: PropsWithChildren<PropsType> ) {
+    const { search, setSearch } = props;
+
+    const onSearch = (ev: NativeSyntheticEvent<TextInputChangeEventData>) => {
+        setSearch(ev.nativeEvent.text);
+    }
+
     return (
-        <View style={ styles.shadowProp }
-        >
+        <View style={ styles.shadowProp }>
             <HeaderWrapper>
                 <Link underlayColor="transparent" to="/login"><BackButton style={{ fontFamily: 'Rubik-SemiBold' }}>Go Back</BackButton></Link>
-                <SearchInput placeholder="Search members" />
+                <SearchInput 
+                    value={search} 
+                    onChange={onSearch}
+                    onFocus={() => props.searchFocused(true)}
+                    onBlur={() => props.searchFocused(false)}
+                    placeholder="Search members" />
             </HeaderWrapper>
         </View>
     )
