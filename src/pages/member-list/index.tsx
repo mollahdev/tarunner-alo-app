@@ -1,7 +1,7 @@
 /**
  * Native dependencies 
  */ 
-import { ScrollView, Modal, Image, StyleSheet, Text } from 'react-native';
+import { ScrollView, Modal, Image } from 'react-native';
 import { useState, useMemo } from 'react';
 /**
  * Internal dependencies 

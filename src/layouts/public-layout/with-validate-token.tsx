@@ -9,11 +9,12 @@ import { Navigate } from "react-router-native"
 /**
  * Internal dependencies 
  */
-import { useLoading, useAppMeta } from "@src/hooks";
+import { useLoading, useAppMeta, useBackHandler } from "@src/hooks";
 import { AppLoader } from "@src/components";
 
 export default function withValidateToken(Component: ComponentType) {
     return function ValidateToken() {
+        useBackHandler();
         const loading = useLoading();
         const meta = useAppMeta();
 

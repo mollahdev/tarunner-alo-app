@@ -2,7 +2,6 @@
  * Native dependencies 
  */ 
 import { View, Image, Text } from 'react-native';
-import { useLayoutEffect } from 'react';
 /**
  * External dependencies  
  */ 
@@ -36,7 +35,9 @@ export default function Login() {
                     <Paragraph sx={{fontSize: 16,fontFamily: 'Rubik-Regular', color: '#ec1f27'}}>Forgot Password?</Paragraph>
                 </Link>
             </AuthInput>
-            <Button>
+            <Button
+                onPress={onLogin}
+            >
                 <Paragraph
                     style={{fontFamily: 'Rubik-Bold'}}
                     sx={{
