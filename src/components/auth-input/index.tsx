@@ -11,13 +11,14 @@ type PropsType = {
   label: string;
   placeholder?: string;
   secureTextEntry?: boolean;
+  sx?: Object;
 }
 
 export default function AuthInput( props: PropsWithChildren<PropsType> ) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <Wrapper>
+    <Wrapper style={props.sx || {}}>
       <View style={ styles.labelWrapper }>
         <Paragraph sx={{fontSize: 16,fontFamily: 'Rubik-Regular'}}>{props.label}</Paragraph>
         {props.children}

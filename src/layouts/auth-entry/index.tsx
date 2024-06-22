@@ -23,10 +23,11 @@ const AuthEntry = withValidateToken(function() {
         <ScrollView contentContainerStyle={{justifyContent: 'center',}} contentInsetAdjustmentBehavior="automatic">
             <Wrapper>
                 <View style={{alignItems: 'center', gap: 20, marginBottom: 20}}>
-                    <Image
+                    { !isRegisterPage && <Image
                         source={require('@assets/images/logo.jpeg')}
                         style={{ width: 150, height: 150}}
-                    />
+                    /> }
+                    
                     <Paragraph 
                         sx={{
                             fontSize: 24,
