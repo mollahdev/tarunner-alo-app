@@ -18,12 +18,13 @@ import { Wrapper, InputWrapper  } from "./style";
 type PropsType = {
     label: string;
     sx?: Object;
+    onDateChange?: (text: string) => void;
+    date: null | string;
   }
 
 export default function DatePicker( props: PropsWithChildren<PropsType> ) {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
-    const [date, setDate] = useState<null | string>(null);
 
     const showDatePicker = () => {
       setDatePickerVisibility(true);
@@ -36,7 +37,11 @@ export default function DatePicker( props: PropsWithChildren<PropsType> ) {
     const handleConfirm = (date: any) => {
       // change date format to 'dd/mm/yyyy'
       const dateFormatted = moment(date).format('DD-MM-YYYY').toString();
-      setDate(dateFormatted);
+
+      if( props.onDateChange && typeof props.onDateChange === 'function' ) {
+        props.onDateChange(dateFormatted);
+      }
+
       hideDatePicker();
     };
 
@@ -56,11 +61,11 @@ export default function DatePicker( props: PropsWithChildren<PropsType> ) {
               <Paragraph sx={{
                 fontSize: 16,
                 fontFamily: 'Rubik-Regular',
-                color: date ? '#101010' : '#bacddb',
+                color: props.date ? '#101010' : '#bacddb',
                 width: '78%',
                 paddingLeft: 5
               }}>
-                {date ? date : 'Pick a date'}
+                {props.date ? props.date : 'Pick a date'}
               </Paragraph>
               <Image style={styles.flag} source={require('@assets/images/calendar.jpeg')}/>
           </InputWrapper>
@@ -69,7 +74,7 @@ export default function DatePicker( props: PropsWithChildren<PropsType> ) {
         <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="date"
-            date={date ? moment(date, 'DD-MM-YYYY').toDate() : new Date()}
+            date={props.date ? moment(props.date, 'DD-MM-YYYY').toDate() : new Date()}
             onConfirm={(ev) => {
               handleConfirm(ev)
               setIsFocused(false);

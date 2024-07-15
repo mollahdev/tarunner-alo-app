@@ -12,10 +12,18 @@ type PropsType = {
   placeholder?: string;
   secureTextEntry?: boolean;
   sx?: Object;
+  onChangeText?: (text: string) => void;
+  value?: string;
 }
 
 export default function AuthInput( props: PropsWithChildren<PropsType> ) {
   const [isFocused, setIsFocused] = useState(false);
+
+  const onChangeText = (text: string) => {
+    if (props.onChangeText && typeof props.onChangeText === 'function') {
+      props.onChangeText(text);
+    }
+  };
 
   return (
     <Wrapper style={props.sx || {}}>
@@ -25,10 +33,12 @@ export default function AuthInput( props: PropsWithChildren<PropsType> ) {
       </View>
       <TextInput 
         isFocused={isFocused}
+        value={props.value}
         onFocus={() => setIsFocused(true)} 
         onBlur={() => setIsFocused(false)} 
         secureTextEntry={ props.secureTextEntry } 
         placeholder={ props.placeholder }
+        onChangeText={onChangeText}
       />
     </Wrapper>
   );

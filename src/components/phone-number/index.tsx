@@ -10,10 +10,18 @@ import { Wrapper, TextInput, InputWrapper } from "./style";
 type PropsType = {
     label: string;
     sx?: Object;
+    onChangeText?: (text: string) => void;
+    value?: string;
 }
 
 export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
     const [isFocused, setIsFocused] = useState(false);
+
+    const onChangeText = (text: string) => {
+        if (props.onChangeText && typeof props.onChangeText === 'function') {
+            props.onChangeText(text);
+        }
+    };
 
     return (
         <Wrapper style={props.sx || {}}>
@@ -44,6 +52,8 @@ export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
                         onFocus={() => setIsFocused(true)} 
                         onBlur={() => setIsFocused(false)} 
                         placeholder="1742700000"
+                        onChangeText={onChangeText}
+                        value={props.value}
                     />
                 </InputWrapper>
             </View>
