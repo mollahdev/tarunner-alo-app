@@ -61,6 +61,7 @@ export default function MemberList() {
                                     borderWidth: 4,
                                     borderColor: '#fff',
                                     position: 'absolute',
+                                    backgroundColor: '#fff',
                                 }}
                             />
                             <Paragraph 

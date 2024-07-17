@@ -2,7 +2,7 @@ import styled from "@emotion/native"
 import { Link } from "react-router-native";
 
 export const Wrapper = styled.View`
-    padding: 24px;
+    padding: 40px 24px;
     gap: 20px;
     flex: 1;
     justify-content: center;

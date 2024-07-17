@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
     value: {
         flex: 2,
         fontSize: 16,
+        color: '#000',
     },
 });

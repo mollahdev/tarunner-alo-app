@@ -16,6 +16,7 @@ export const TextInput = styled.TextInput( (props: TextInputProps) => {
         transition: 'border-color 0.3s',
         borderColor: props.isFocused ? '#49687e' : '#bacddb',
         height: 50,
+        color: '#000',
         fontSize: 16,
     }
 } )
