@@ -8,6 +8,7 @@ export const INITIAL_VALUES = {
     country_code: '880',
     date_of_birth: '',
     blood_group: '',
+    location: '',
 };
 
 export const BLOOD_GROUP = [

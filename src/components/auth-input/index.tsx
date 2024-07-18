@@ -14,6 +14,9 @@ type PropsType = {
   sx?: Object;
   onChangeText?: (text: string) => void;
   value?: string;
+  multiline?: boolean;
+  numberOfLines?: number;
+  inputStyle?: Object;
 }
 
 export default function AuthInput( props: PropsWithChildren<PropsType> ) {
@@ -32,8 +35,11 @@ export default function AuthInput( props: PropsWithChildren<PropsType> ) {
         {props.children}
       </View>
       <TextInput 
+        style={props.inputStyle || {}}
         isFocused={isFocused}
         value={props.value}
+        multiline={props.multiline}
+        numberOfLines={props.numberOfLines}
         onFocus={() => setIsFocused(true)} 
         onBlur={() => setIsFocused(false)} 
         secureTextEntry={ props.secureTextEntry } 

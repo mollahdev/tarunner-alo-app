@@ -16,6 +16,7 @@ export const SearchInput = styled.TextInput`
     border-radius: 6px;
     font-size: 16px;
     background-color: #fff;
+    color: #000;
 `;
 
 export const BackButton = styled.Text`

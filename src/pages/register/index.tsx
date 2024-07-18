@@ -34,7 +34,7 @@ export default function Register() {
                 handleSubmit,
                 isSubmitting,
             }) => (
-                <View style={{gap: 40}}>
+                <View style={{gap: 50}}>
                     <FlexWrapper>
                         <AuthInput
                             sx={{width: '48%'}}
@@ -98,7 +98,10 @@ export default function Register() {
                                 fontFamily: 'Rubik-Regular',
                                 fontSize: 16,
                                 color: '#49687e',
-                                marginBottom: 10
+                                marginBottom: 5,
+                                display: 'block',
+                                paddingTop: 0,
+                                marginTop: 0,
                             }}
                             selectedValue={values.blood_group}
                             placeholder="Select Group"
@@ -119,9 +122,31 @@ export default function Register() {
                                 top: 20,
                                 right: 15,
                             }}
+                            checkboxControls={{
+                                checkboxLabelStyle: {
+                                    color: '#000'
+                                }
+                            }}
                             primaryColor="#ec1f27"
                             isMultiple={false}
                             options={BLOOD_GROUP}
+                        />
+
+                        <AuthInput
+                            sx={{
+                                height: 80,
+                                width: '100%',
+                            }}
+                           inputStyle={{
+                             minHeight: 80,
+                             textAlignVertical: 'top',
+                           }}
+                            label="Location/Address"
+                            placeholder='Enter your location'
+                            multiline={true}
+                            numberOfLines={4}   
+                            onChangeText={handleChange('location')}
+                            value={values.location}
                         />
 
                     </FlexWrapper>

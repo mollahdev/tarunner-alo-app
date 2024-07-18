@@ -28,5 +28,6 @@ export const TextInput = styled.TextInput( () => {
         width: '80%',
         verticalAlign: 'middle',
         paddingVertical: 0,
+        color: '#000',
     }
 } )
