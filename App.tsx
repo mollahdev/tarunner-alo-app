@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { store } from '@src/services/data';
 import RouterProvider from '@src/router';
 import { Body } from '@src/components';
+import { InternetStatus } from '@src/components';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Body>
         <RouterProvider/>
       </Body>
+      <InternetStatus/>
     </Provider>
   );
 }
