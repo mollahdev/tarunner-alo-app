@@ -20,6 +20,7 @@ type PropsType = {
     sx?: Object;
     onDateChange?: (text: string) => void;
     date: null | string;
+    error?: string;
   }
 
 export default function DatePicker( props: PropsWithChildren<PropsType> ) {
@@ -57,7 +58,7 @@ export default function DatePicker( props: PropsWithChildren<PropsType> ) {
             showDatePicker();
           }}
         >
-          <InputWrapper isFocused={isFocused}>
+          <InputWrapper error={props.error} isFocused={isFocused}>
               <Paragraph sx={{
                 fontSize: 16,
                 fontFamily: 'Rubik-Regular',
@@ -70,6 +71,15 @@ export default function DatePicker( props: PropsWithChildren<PropsType> ) {
               <Image style={styles.flag} source={require('@assets/images/calendar.jpeg')}/>
           </InputWrapper>
         </TouchableWithoutFeedback>
+        { props.error && 
+            <Paragraph
+            sx={{
+                fontSize: 13,
+                color: '#ec1f27',
+                marginTop: -4,
+            }}
+            >{props.error}</Paragraph>
+        }
         
         <DateTimePickerModal
             isVisible={isDatePickerVisible}

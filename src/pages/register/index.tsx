@@ -8,9 +8,9 @@ import { Formik } from 'formik';
  * Internal dependencies 
  */
 import storage from '@src/services/storage';
-import {AuthInput, Button, Paragraph, PhoneNumber, DatePicker } from '@src/components';
+import {AuthInput, Button, Paragraph, PhoneNumber, DatePicker, ImagePicker } from '@src/components';
 import { FlexWrapper } from './style';
-import { INITIAL_VALUES, BLOOD_GROUP } from './constants';
+import { INITIAL_VALUES, BLOOD_GROUP, registerSchema } from './constants';
 
 
 export default function Register() {
@@ -25,23 +25,48 @@ export default function Register() {
     return (
         <Formik
             initialValues={INITIAL_VALUES}
+            validationSchema={registerSchema}
             onSubmit={onRegister}
         >
                 {({
                 values,
                 errors,
+                touched,
                 handleChange,
                 handleSubmit,
                 isSubmitting,
             }) => (
                 <View style={{gap: 50}}>
                     <FlexWrapper>
+                        <ImagePicker
+                            sx={{ width: '100%' }}
+                            value={values.avatar ? JSON.parse(values.avatar) : null}
+                            error={errors.avatar}
+                            onChange={value => {
+                                const eventChange = handleChange('avatar')
+                                if( value ) {
+                                    eventChange(JSON.stringify(value))
+                                } else {
+                                    eventChange('')
+                                }
+                            }}
+                            placeholderStyle={{
+                                width: 140,
+                                height: 140
+                            }}
+                            previewStyle={{
+                                width: 140,
+                                height: 140,
+                            }}
+                        />
+
                         <AuthInput
                             sx={{width: '48%'}}
                             label="First Name"
                             placeholder="Ex: John"
                             onChangeText={handleChange('first_name')}
                             value={values.first_name}
+                            error={errors.first_name}
                         />
                         
                         <AuthInput
@@ -50,6 +75,7 @@ export default function Register() {
                             placeholder="Ex: Doe"
                             onChangeText={handleChange('last_name')}
                             value={values.last_name}
+                            error={errors.last_name}
                         />
                         
                         <AuthInput
@@ -58,6 +84,7 @@ export default function Register() {
                             placeholder="Ex: Doe"
                             onChangeText={handleChange('email')}
                             value={values.email}
+                            error={errors.email}
                         />
                     
                         <AuthInput
@@ -67,6 +94,7 @@ export default function Register() {
                             secureTextEntry={true}
                             onChangeText={handleChange('password')}
                             value={values.password}
+                            error={errors.password}
                         />
                     
                         <AuthInput
@@ -76,6 +104,7 @@ export default function Register() {
                             secureTextEntry={true}
                             onChangeText={handleChange('confirm_password')}
                             value={values.confirm_password}
+                            error={errors.confirm_password}
                         />
 
                         <PhoneNumber 
@@ -83,6 +112,7 @@ export default function Register() {
                             label="Phone Number"
                             onChangeText={handleChange('phone')}
                             value={values.phone}
+                            error={errors.phone}
                         />
 
                         <DatePicker
@@ -90,10 +120,12 @@ export default function Register() {
                             label="Date of Birth"
                             date={values.date_of_birth}
                             onDateChange={handleChange('date_of_birth')}
+                            error={errors.date_of_birth}
                         />
 
                         <DropdownSelect
                             label="Blood Group"
+                            error={errors.blood_group}
                             labelStyle={{
                                 fontFamily: 'Rubik-Regular',
                                 fontSize: 16,
@@ -147,11 +179,12 @@ export default function Register() {
                             numberOfLines={4}   
                             onChangeText={handleChange('location')}
                             value={values.location}
+                            error={errors.location}
                         />
 
                     </FlexWrapper>
                     
-                    <Button onPress={handleSubmit}>
+                    <Button styles={{marginTop: 10}} onPress={handleSubmit}>
                         <Paragraph
                             style={{fontFamily: 'Rubik-Bold'}}
                             sx={{

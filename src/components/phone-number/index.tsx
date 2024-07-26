@@ -12,6 +12,7 @@ type PropsType = {
     sx?: Object;
     onChangeText?: (text: string) => void;
     value?: string;
+    error?:string;
 }
 
 export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
@@ -33,11 +34,12 @@ export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
                 <Image style={styles.flag} source={require('@assets/images/bangladesh.webp')}/>
                 <InputWrapper
                     isFocused={isFocused}
+                    error={props.error}
                 >
                     <Paragraph
                         sx={{
                             fontSize: 16,
-                            color: '#000',
+                            color: props.error ? '#ec1f27' : '#000',
                             fontFamily: 'Rubik-Regular',
                         }}
                     >
@@ -46,6 +48,7 @@ export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
                     <TextInput 
                         style={{
                             fontSize: 16,
+                            color: props.error ? '#ec1f27' : '#000',
                             fontFamily: 'Rubik-Regular'
                         }}
                         keyboardType={'phone-pad'}
@@ -57,6 +60,16 @@ export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
                     />
                 </InputWrapper>
             </View>
+            { props.error && 
+                <Paragraph
+                sx={{
+                    fontSize: 13,
+                    color: '#ec1f27',
+                    marginTop: -2,
+                    width: '100%',
+                }}
+                >{props.error}</Paragraph>
+            }
         </Wrapper>
     )
 }

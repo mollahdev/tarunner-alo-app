@@ -6,13 +6,26 @@ export const Wrapper = styled.View`
 
 type TextInputProps = {
     isFocused: boolean;
+    error?:string;
 }
 
 export const InputWrapper = styled.View( (props: TextInputProps) => {
+    const borderColor = () => {
+        if (props.error) {
+            return '#ec1f27'
+        }
+
+        if (props.isFocused) {
+            return '#49687e'
+        }
+
+        return '#bacddb'
+    }
+
     return {
         flexDirection: 'row',
         alignItems: 'center',
-        borderColor: props.isFocused ? '#49687e' : '#bacddb',
+        borderColor: borderColor(),
         borderRadius: 8,
         transition: 'border-color 0.3s',
         borderWidth: 1,

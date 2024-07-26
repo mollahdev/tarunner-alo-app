@@ -17,6 +17,7 @@ type PropsType = {
   multiline?: boolean;
   numberOfLines?: number;
   inputStyle?: Object;
+  error?: string
 }
 
 export default function AuthInput( props: PropsWithChildren<PropsType> ) {
@@ -37,6 +38,7 @@ export default function AuthInput( props: PropsWithChildren<PropsType> ) {
       <TextInput 
         style={props.inputStyle || {}}
         isFocused={isFocused}
+        error={props.error}
         value={props.value}
         multiline={props.multiline}
         numberOfLines={props.numberOfLines}
@@ -46,6 +48,15 @@ export default function AuthInput( props: PropsWithChildren<PropsType> ) {
         placeholder={ props.placeholder }
         onChangeText={onChangeText}
       />
+      { props.error && 
+        <Paragraph
+          sx={{
+            fontSize: 13,
+            color: '#ec1f27',
+            marginTop: -4,
+          }}
+        >{props.error}</Paragraph>
+      }
     </Wrapper>
   );
 }
