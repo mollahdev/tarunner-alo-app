@@ -1,9 +1,11 @@
 /**
  * Native Dependencies 
  */ 
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ToastAndroid } from 'react-native';
 import { default as DropdownSelect } from 'react-native-input-select';
 import { Formik } from 'formik';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-native';
 /**
  * Internal dependencies 
  */
@@ -11,14 +13,52 @@ import storage from '@src/services/storage';
 import {AuthInput, Button, Paragraph, PhoneNumber, DatePicker, ImagePicker } from '@src/components';
 import { FlexWrapper } from './style';
 import { INITIAL_VALUES, BLOOD_GROUP, registerSchema } from './constants';
+import Api from '@src/services/api';
 
+const INITIAL_ERROR_VALUE = {
+    avatar: false,
+    email: false,
+    phone: false
+}
 
 export default function Register() {
+    const [serverErrors, setServerErrors] = useState(INITIAL_ERROR_VALUE)
+    const navigate = useNavigate();
 
-    const onRegister = (values: any, { setSubmitting } : any) => {
-        console.log(values);
-        // clear the form
+    const onRegister = async (values: any, { setSubmitting } : any) => {
+        setSubmitting(true);
+        setServerErrors(INITIAL_ERROR_VALUE)
+       
+        try {
+            const response = await Api.User.register({
+                ...values,
+                avatar: JSON.parse(values.avatar),
+            });
 
+
+            ToastAndroid.showWithGravity(
+                response.message,
+                ToastAndroid.LONG,
+                ToastAndroid.BOTTOM,
+            );
+
+            navigate('/member-list');
+    
+        } catch(err: any ) {
+            setServerErrors(prevState => {
+                return {
+                    ...prevState,
+                    ...(err.errors || {})
+                }
+            })
+
+            ToastAndroid.showWithGravity(
+                err.message,
+                ToastAndroid.LONG,
+                ToastAndroid.BOTTOM,
+            );
+        }
+       
         setSubmitting(false);
     }
 
@@ -27,13 +67,15 @@ export default function Register() {
             initialValues={INITIAL_VALUES}
             validationSchema={registerSchema}
             onSubmit={onRegister}
+            autoComplete="off"
         >
-                {({
+            {({
                 values,
                 errors,
                 touched,
                 handleChange,
                 handleSubmit,
+                handleBlur,
                 isSubmitting,
             }) => (
                 <View style={{gap: 50}}>
@@ -41,7 +83,8 @@ export default function Register() {
                         <ImagePicker
                             sx={{ width: '100%' }}
                             value={values.avatar ? JSON.parse(values.avatar) : null}
-                            error={errors.avatar}
+                            error={(touched.avatar && errors.avatar) || serverErrors.avatar}
+                            onBlur={handleBlur('avatar')}
                             onChange={value => {
                                 const eventChange = handleChange('avatar')
                                 if( value ) {
@@ -49,6 +92,8 @@ export default function Register() {
                                 } else {
                                     eventChange('')
                                 }
+
+                                setServerErrors(prevState => ({...prevState, avatar: false}))
                             }}
                             placeholderStyle={{
                                 width: 140,
@@ -59,14 +104,14 @@ export default function Register() {
                                 height: 140,
                             }}
                         />
-
                         <AuthInput
                             sx={{width: '48%'}}
                             label="First Name"
                             placeholder="Ex: John"
                             onChangeText={handleChange('first_name')}
                             value={values.first_name}
-                            error={errors.first_name}
+                            error={touched.first_name && errors.first_name}
+                            onBlur={handleBlur('first_name')}
                         />
                         
                         <AuthInput
@@ -75,16 +120,21 @@ export default function Register() {
                             placeholder="Ex: Doe"
                             onChangeText={handleChange('last_name')}
                             value={values.last_name}
-                            error={errors.last_name}
+                            error={touched.last_name && errors.last_name}
+                            onBlur={handleBlur('last_name')}
                         />
                         
                         <AuthInput
                             sx={{width: '100%'}}
                             label="Email Address"
                             placeholder="Ex: Doe"
-                            onChangeText={handleChange('email')}
+                            onChangeText={ev => {
+                                handleChange('email')(ev);
+                                setServerErrors(prevState => ({...prevState, email: false}))
+                            }}
                             value={values.email}
-                            error={errors.email}
+                            error={(touched.email && errors.email) || serverErrors.email}
+                            onBlur={handleBlur('email')}
                         />
                     
                         <AuthInput
@@ -94,7 +144,8 @@ export default function Register() {
                             secureTextEntry={true}
                             onChangeText={handleChange('password')}
                             value={values.password}
-                            error={errors.password}
+                            error={touched.password && errors.password}
+                            onBlur={handleBlur('password')}
                         />
                     
                         <AuthInput
@@ -104,15 +155,20 @@ export default function Register() {
                             secureTextEntry={true}
                             onChangeText={handleChange('confirm_password')}
                             value={values.confirm_password}
-                            error={errors.confirm_password}
+                            error={touched.confirm_password && errors.confirm_password}
+                            onBlur={handleBlur('confirm_password')}
                         />
 
                         <PhoneNumber 
                             sx={{width: '100%'}}
                             label="Phone Number"
-                            onChangeText={handleChange('phone')}
+                            onChangeText={ev => {
+                                handleChange('phone')(ev)
+                                setServerErrors(prevState => ({...prevState, phone: false}))
+                            }}
                             value={values.phone}
-                            error={errors.phone}
+                            error={(touched.phone && errors.phone) || serverErrors.phone}
+                            onBlur={handleBlur('phone')}
                         />
 
                         <DatePicker
@@ -120,12 +176,14 @@ export default function Register() {
                             label="Date of Birth"
                             date={values.date_of_birth}
                             onDateChange={handleChange('date_of_birth')}
-                            error={errors.date_of_birth}
+                            error={touched.date_of_birth && errors.date_of_birth}
+                            onBlur={handleBlur('date_of_birth')}
                         />
 
                         <DropdownSelect
                             label="Blood Group"
-                            error={errors.blood_group}
+                            error={touched.blood_group && errors.blood_group}
+                            onBlur={handleBlur('blood_group')}
                             labelStyle={{
                                 fontFamily: 'Rubik-Regular',
                                 fontSize: 16,
@@ -179,7 +237,8 @@ export default function Register() {
                             numberOfLines={4}   
                             onChangeText={handleChange('location')}
                             value={values.location}
-                            error={errors.location}
+                            error={touched.location && errors.location}
+                            onBlur={handleBlur('location')}
                         />
 
                     </FlexWrapper>

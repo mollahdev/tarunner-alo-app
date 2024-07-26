@@ -1,6 +1,8 @@
 http://localhost:3000/debugger-ui/
+http://localhost:8081/debugger-ui/
 
 #Prepare APK
 --------------
+npx react-native build-android --mode=release
 cd android
 ./gradlew assembleRelease

@@ -17,7 +17,8 @@ type PropsType = {
   multiline?: boolean;
   numberOfLines?: number;
   inputStyle?: Object;
-  error?: string
+  error?: string | boolean;
+  onBlur?: Function;
 }
 
 export default function AuthInput( props: PropsWithChildren<PropsType> ) {
@@ -43,7 +44,12 @@ export default function AuthInput( props: PropsWithChildren<PropsType> ) {
         multiline={props.multiline}
         numberOfLines={props.numberOfLines}
         onFocus={() => setIsFocused(true)} 
-        onBlur={() => setIsFocused(false)} 
+        onBlur={(ev) => {
+          setIsFocused(false)
+          if (props.onBlur && typeof props.onBlur === 'function') {
+            props.onBlur(ev);
+          }
+        }} 
         secureTextEntry={ props.secureTextEntry } 
         placeholder={ props.placeholder }
         onChangeText={onChangeText}

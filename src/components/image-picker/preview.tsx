@@ -1,6 +1,5 @@
 import { Image } from "react-native"
 import type { PropsWithChildren } from "react"
-import type { ImageType } from "./types"
 import { PreviewWrapper, Overlay } from "./style"
 import { Button, Paragraph } from '@src/components'
 

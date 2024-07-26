@@ -12,7 +12,8 @@ type PropsType = {
     sx?: Object;
     onChangeText?: (text: string) => void;
     value?: string;
-    error?:string;
+    error?: string | boolean;
+    onBlur?: Function;
 }
 
 export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
@@ -53,7 +54,12 @@ export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
                         }}
                         keyboardType={'phone-pad'}
                         onFocus={() => setIsFocused(true)} 
-                        onBlur={() => setIsFocused(false)} 
+                        onBlur={(ev) => {
+                            setIsFocused(false);
+                            if (props.onBlur && typeof props.onBlur === 'function') {
+                                props.onBlur(ev);
+                            }
+                        }} 
                         placeholder="1742700000"
                         onChangeText={onChangeText}
                         value={props.value}

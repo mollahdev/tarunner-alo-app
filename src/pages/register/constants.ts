@@ -13,6 +13,8 @@ export const INITIAL_VALUES = {
     blood_group: '',
     location: '',
     avatar: '',
+    role: 'member',
+    plan_id: '0'
 };
 
  
@@ -20,7 +22,7 @@ export const registerSchema = Yup.object().shape({
     first_name: string().required('First name required'),
     last_name: string().required('Last name required'),
     email: string().email('Invalid email address').required('Email required'),
-    password: string().required('Password required'),
+    password: string().required('Password required').min(6, 'Password must be at least 6 characters'),
     confirm_password: string().when('password', (password, field) =>
         password ? field.required('Password required').oneOf([ref('password')], 'Must match with password') : field
     ),
@@ -41,4 +43,3 @@ export const BLOOD_GROUP = [
     { value: 'O+', label: 'O+' },
     { value: 'O-', label: 'O-' },
 ];
-

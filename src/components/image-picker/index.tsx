@@ -8,7 +8,7 @@ import type { PropsWithChildren } from 'react';
 import { Paragraph } from '@src/components';
 
 export default function ImagePicker( props: PropsWithChildren<ImagePickerProps> ) {
-    const selectFile = async () => {
+    const selectFile = async (ev: any) => {
         const res = await CropImagePicker.openPicker({
             width: 300,
             height: 300,
@@ -18,10 +18,13 @@ export default function ImagePicker( props: PropsWithChildren<ImagePickerProps> 
 
         props.onChange && props.onChange({
             uri: res.path,
-            width: res.width,
-            height: res.height,
-            mime: res.mime,
+            type: res.mime,
+            name: res.filename || res.path.split('/').pop() || 'image.jpg',
         });
+
+        if( props.onBlur && typeof props.onBlur === 'function' ) {
+            props.onBlur(ev)
+        }
     };
 
     const onRemove = () => {

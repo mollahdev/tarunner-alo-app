@@ -3,7 +3,7 @@ import { Paragraph } from '@src/components'
 import { TouchableWithoutFeedback } from 'react-native'
 
 type Props = {
-    onPress: () => void,
+    onPress: (ev: any) => void,
     sx?: Object
 }
 

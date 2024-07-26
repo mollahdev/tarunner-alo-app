@@ -20,7 +20,8 @@ type PropsType = {
     sx?: Object;
     onDateChange?: (text: string) => void;
     date: null | string;
-    error?: string;
+    error?: string | boolean;
+    onBlur?: Function;
   }
 
 export default function DatePicker( props: PropsWithChildren<PropsType> ) {
@@ -33,6 +34,9 @@ export default function DatePicker( props: PropsWithChildren<PropsType> ) {
   
     const hideDatePicker = () => {
       setDatePickerVisibility(false);
+      if (props.onBlur && typeof props.onBlur === 'function') {
+        props.onBlur();
+      }
     };
   
     const handleConfirm = (date: any) => {
@@ -53,7 +57,7 @@ export default function DatePicker( props: PropsWithChildren<PropsType> ) {
             {props.children}
         </View>
         <TouchableWithoutFeedback
-          onPress={() => {
+          onPress={(ev) => {
             setIsFocused(true);
             showDatePicker();
           }}
