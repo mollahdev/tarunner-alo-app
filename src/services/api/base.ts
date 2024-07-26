@@ -5,13 +5,11 @@ export default abstract class Base {
     abstract group: string
 
     async get<T>(url: string): Promise<T> {
-        const response = await fetch(`${this.apiEndpoint}/${this.group}/${url}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-type':'application/json'
-            },
-        })
+        const response = await fetch(`${this.apiEndpoint}/${this.group}/${url}`);
+
+        if( !response.ok ) {
+            throw await response.json()
+        }
 
         return response.json()
     }

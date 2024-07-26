@@ -3,13 +3,13 @@ import type { RootState } from '@src/services/data'
 
 interface InitialStateInterface {
   value: number;
-  users: UserInterface[] | null;
-  currentUser: UserInterface | null | [];
+  users: RegisterUserApiResponse[] | [];
+  currentUser: RegisterUserApiResponse | null | [];
 }
 
 const initialState: InitialStateInterface = {
   value: 0,
-  users: null,
+  users: [],
   currentUser: null
 }
 
@@ -27,12 +27,17 @@ export const usersSlice = createSlice({
 
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
+    },
+
+    setUsers(state, action: PayloadAction<RegisterUserApiResponse[]>) {
+      state.users = action.payload
     }
   }
 })
 
-export const { increment, decrement, incrementByAmount } = usersSlice.actions
+export const { increment, decrement, incrementByAmount, setUsers } = usersSlice.actions
 
 export const selectCount = (state: RootState) => state.users.value
 export const selectCurrentUser = (state: RootState) => state.users.currentUser
+export const selectUsers = (state: RootState) => state.users.users
 export default usersSlice.reducer

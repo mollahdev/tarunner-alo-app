@@ -4,7 +4,10 @@ export default class User extends Base {
     group = 'user'
 
     async getList() {
-        return this.get('list')
+        return this.get<{
+            message: string
+            data: RegisterUserApiResponse[]
+        }>('list')
     }
 
     async register( values: RegisterUserForm ) {

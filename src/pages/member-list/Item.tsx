@@ -6,7 +6,6 @@ import { Image, StyleSheet, View, Linking} from "react-native";
 /**
  * Internal dependencies 
  */ 
-import type { Member } from './data';
 import { Card } from './style';
 import { Paragraph, Button } from '@src/components';
 
@@ -14,19 +13,19 @@ type PropsType = {
     onShowInfo: () => void;
 }
 
-export default function Item( props: PropsWithChildren<Member & PropsType> ) {
+export default function Item( props: PropsWithChildren<RegisterUserApiResponse & PropsType> ) {
     const onCall = () => {
-        Linking.openURL(`tel:${props.phone}`);
+        Linking.openURL(`tel:${props.country_code}${props.phone}`);
     }
 
     return (
         <Card style={styles.shadowProp}>
             <Image
-                source={props.profile}
+                source={{uri: props.avatar}}
                 resizeMode="cover"
                 style={ styles.profileImage }
             />
-            <Paragraph style={styles.name}>{props.name}</Paragraph>
+            <Paragraph style={styles.name}>{props.first_name} {props.last_name}</Paragraph>
             <View style={styles.actionContent}>
                 <Button styles={[styles.button, styles.callButton]} onPress={onCall}>
                     <Image 
