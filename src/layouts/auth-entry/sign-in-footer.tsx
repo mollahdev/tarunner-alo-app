@@ -9,15 +9,15 @@ export default function SignInFooter() {
                 sx={{
                     color: '#83a1b7',
                     fontFamily: 'Rubik-Regular',
-                    fontSize: 14,                        
+                    fontSize: 16,                        
                 }}
-            >Already have an account?</Paragraph>
+            >ইতিমধ্যেই একটি অ্যাকাউন্ট আছে?</Paragraph>
             <Link to="login" underlayColor="transparent">
                 <Paragraph sx={{
                     color: '#e64949',
                     fontFamily: 'Rubik-Bold',
-                    fontSize: 14,
-                }}>Sign In</Paragraph>
+                    fontSize: 16,
+                }}>সাইন ইন</Paragraph>
             </Link>
         </View>
     )

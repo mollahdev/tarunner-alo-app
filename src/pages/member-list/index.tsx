@@ -12,7 +12,7 @@ import Header from './header';
 import Item from './Item';
 import InfoCell from './infoCell';
 import { ListWrapper, ModalContent, ModalOverlay, ModalOverlayClose } from './style';
-import { Paragraph } from '@src/components';
+import { Paragraph, EmptyState } from '@src/components';
 import Api from '@src/services/api';
 import { selectUsers, setUsers } from '@src/services/data/users';
 
@@ -37,7 +37,7 @@ export default function MemberList() {
     }, []);
 
     const filteredData = useMemo(() => {
-        return members.filter(item => {
+        return members?.filter(item => {
             const name = `${item.first_name} ${item.last_name}`;
             return name.toLowerCase().includes(search.toLowerCase())
         });
@@ -54,10 +54,14 @@ export default function MemberList() {
             showsVerticalScrollIndicator
         >
             <Header search={ search } searchFocused={setSearchFocused} setSearch={setSearch} />
-            { members.length === 0 &&  <ActivityIndicator style={[styles.activityIndicator]} size="large" color="#fc0e12"/> }
+            { members === null &&  <ActivityIndicator style={[styles.activityIndicator]} size="large" color="#fc0e12"/> }
+            
             <ListWrapper style={{opacity: searchFocused ? .5 : 1}}>
-                { filteredData.map(item => <Item onShowInfo={() => showModal(item)} key={item.id} {...item}/> )}
+                { filteredData?.map(item => <Item onShowInfo={() => showModal(item)} key={item.id} {...item}/> )}
             </ListWrapper>
+
+            { filteredData?.length === 0 && <EmptyState/>}
+
             { modalVisible && <ModalOverlay/>}
             <Modal
                 animationType="slide"

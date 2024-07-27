@@ -34,7 +34,7 @@ const AuthEntry = withValidateToken(function() {
                             fontFamily: 'Rubik-Bold',
                         }}
                     >
-                        { isRegisterPage ? 'Become a Member Now' : 'Sign In to Tarunner Alo'}
+                        { isRegisterPage ? 'সদস্য হওয়ার ফর্ম' : 'তারুণ্যের আলোতে সাইন ইন করুন'}
                     </Paragraph>
                 </View>
                 <View>
@@ -48,7 +48,7 @@ const AuthEntry = withValidateToken(function() {
                             paddingHorizontal: 10,
                             color: '#83a1b7',
                         }}
-                    >Or try other options</Paragraph>
+                    >অথবা অন্যান্য বিকল্প চেষ্টা করুন</Paragraph>
                 </Divider>
                 <View style={{gap: 7, flexDirection: 'row'}}>
                     <ViewMemberButton style={{width: '48%'}} to="/member-list" underlayColor="transparent">
@@ -59,7 +59,7 @@ const AuthEntry = withValidateToken(function() {
                                     height: 20,
                                 }}
                                 source={require('@assets/images/bell.png')} 
-                            />  Whats's New</Paragraph>
+                            />  ঘোষণাসমূহ</Paragraph>
                     </ViewMemberButton>
                     <ViewMemberButton style={{width: '48%'}} to="/member-list" underlayColor="transparent">
                         <Paragraph sx={{color: '#e64949', fontFamily: 'Rubik-SemiBold', fontSize: 16, alignItems: 'center'}}>
@@ -69,7 +69,7 @@ const AuthEntry = withValidateToken(function() {
                                     height: 20,
                                 }}
                                 source={require('@assets/images/user-add.png')} 
-                            />  See Members</Paragraph>
+                            />  সদস্যদের দেখুন</Paragraph>
                     </ViewMemberButton>
                 </View>
                 { isRegisterPage ? <SignInFooter /> : <RegisterFooter />}

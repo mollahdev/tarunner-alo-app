@@ -30,13 +30,13 @@ export default function Header( props: PropsWithChildren<PropsType> ) {
     return (
         <View style={ styles.shadowProp }>
             <HeaderWrapper>
-                <Link underlayColor="transparent" to="/login"><BackButton style={{ fontFamily: 'Rubik-SemiBold' }}>Go Back</BackButton></Link>
+                <Link underlayColor="transparent" to="/login"><BackButton style={{ fontFamily: 'Rubik-SemiBold' }}>ফিরে যান</BackButton></Link>
                 <SearchInput 
                     value={search} 
                     onChange={onSearch}
                     onFocus={() => props.searchFocused(true)}
                     onBlur={() => props.searchFocused(false)}
-                    placeholder="Search members" />
+                    placeholder="সদস্যদের খুঁজুন" />
             </HeaderWrapper>
         </View>
     )

@@ -3,13 +3,13 @@ import type { RootState } from '@src/services/data'
 
 interface InitialStateInterface {
   value: number;
-  users: RegisterUserApiResponse[] | [];
+  users: RegisterUserApiResponse[] | null | [];
   currentUser: RegisterUserApiResponse | null | [];
 }
 
 const initialState: InitialStateInterface = {
   value: 0,
-  users: [],
+  users: null,
   currentUser: null
 }
 

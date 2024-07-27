@@ -9,15 +9,15 @@ export default function RegisterFooter() {
                 sx={{
                     color: '#83a1b7',
                     fontFamily: 'Rubik-Regular',
-                    fontSize: 14,                        
+                    fontSize: 16,                        
                 }}
-            >Do not have an account?</Paragraph>
+            >আপনার কি কোনো অ্যাকাউন্ট নেই?</Paragraph>
             <Link to="register" underlayColor="transparent">
                 <Paragraph sx={{
                     color: '#e64949',
                     fontFamily: 'Rubik-Bold',
-                    fontSize: 14,
-                }}>Register</Paragraph>
+                    fontSize: 16,
+                }}>নিবন্ধন করুন</Paragraph>
             </Link>
         </View>
     )
