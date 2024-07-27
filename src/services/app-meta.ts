@@ -1,8 +1,6 @@
 const AppMeta = {
     version: '1.0.0',
-    apiEndpint: 'https://mollah.dev/wp-json/tarunner-alo-api',
-    wpPassword: 'vGin RV4Y 6cwe 0K4D qudk njOQ',
-    wpUsername: 'admin'
+    apiEndpint: 'https://tarunner-alo.mollah.dev/wp-json/tarunner-alo-api',
 }
 
 export default AppMeta

@@ -10,8 +10,8 @@ import { Paragraph } from '@src/components';
 export default function ImagePicker( props: PropsWithChildren<ImagePickerProps> ) {
     const selectFile = async (ev: any) => {
         const res = await CropImagePicker.openPicker({
-            width: 300,
-            height: 300,
+            width: 180,
+            height: 180,
             mediaType: 'photo',
             cropping: true
         })

@@ -96,13 +96,13 @@ export default function MemberList() {
                                     marginBottom: 20,
                                     fontWeight: 'bold',
                                 }}
-                            >Member Information</Paragraph>
-                            <InfoCell label='Name' value={`${selectedItem.first_name} ${selectedItem.last_name}`}/>
-                            <InfoCell label='Email' value={selectedItem.email}/>
-                            <InfoCell label='Phone' value={`+${selectedItem.country_code}${selectedItem.phone}`}/>
-                            <InfoCell label='Blood Group' value={selectedItem.blood_group}/>
-                            <InfoCell label='Date of Birth' value={selectedItem.date_of_birth}/>
-                            <InfoCell styles={{borderBottomWidth: 0}} label='Location' value={selectedItem.location}/>
+                            >সদস্যের তথ্য</Paragraph>
+                            <InfoCell label='নাম' value={`${selectedItem.first_name} ${selectedItem.last_name}`}/>
+                            <InfoCell label='ইমেইল' value={selectedItem.email}/>
+                            <InfoCell label='ফোন' value={`+${selectedItem.country_code}${selectedItem.phone}`}/>
+                            <InfoCell label='রক্তের গ্রুপ' value={selectedItem.blood_group}/>
+                            <InfoCell label='জন্ম তারিখ' value={selectedItem.date_of_birth}/>
+                            <InfoCell styles={{borderBottomWidth: 0}} label='অবস্থান' value={selectedItem.location}/>
                         </ModalContent>
                     ) }
             </Modal>

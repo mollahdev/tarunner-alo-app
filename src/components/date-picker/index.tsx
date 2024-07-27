@@ -70,7 +70,7 @@ export default function DatePicker( props: PropsWithChildren<PropsType> ) {
                 width: '78%',
                 paddingLeft: 5
               }}>
-                {props.date ? props.date : 'Pick a date'}
+                {props.date ? props.date : 'তারিখ বাছুন'}
               </Paragraph>
               <Image style={styles.flag} source={require('@assets/images/calendar.jpeg')}/>
           </InputWrapper>

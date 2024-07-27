@@ -15,8 +15,9 @@ export default function Placeholder( props: Props ) {
                     fontSize: 30,
                 }}>+</Paragraph>
                 <Paragraph sx={{
-                    fontSize: 16
-                }}>Upload Photo</Paragraph>
+                    fontSize: 16,
+                    textAlign: 'center',
+                }}>ছবি যুক্ত করুন</Paragraph>
             </PlaceholderWrapper>
         </TouchableWithoutFeedback>
         

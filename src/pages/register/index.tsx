@@ -106,7 +106,7 @@ export default function Register() {
                         />
                         <AuthInput
                             sx={{width: '48%'}}
-                            label="First Name"
+                            label="নামের প্রথম অংশ"
                             placeholder="Ex: John"
                             onChangeText={handleChange('first_name')}
                             value={values.first_name}
@@ -116,7 +116,7 @@ export default function Register() {
                         
                         <AuthInput
                             sx={{width: '48%'}}
-                            label="Last Name"
+                            label="নামের শেষ অংশ"
                             placeholder="Ex: Doe"
                             onChangeText={handleChange('last_name')}
                             value={values.last_name}
@@ -126,7 +126,7 @@ export default function Register() {
                         
                         <AuthInput
                             sx={{width: '100%'}}
-                            label="Email Address"
+                            label="আপনার ইমেইল ঠিকানা লিখুন"
                             placeholder="Ex: Doe"
                             onChangeText={ev => {
                                 handleChange('email')(ev);
@@ -139,7 +139,7 @@ export default function Register() {
                     
                         <AuthInput
                             sx={{width: '48%'}}
-                            label="Password"
+                            label="পাসওয়ার্ড লিখুন"
                             placeholder='********'
                             secureTextEntry={true}
                             onChangeText={handleChange('password')}
@@ -150,7 +150,7 @@ export default function Register() {
                     
                         <AuthInput
                             sx={{width: '48%'}}
-                            label="Confirm Password"
+                            label="পাসওয়ার্ড নিশ্চিত করুন"
                             placeholder='********'
                             secureTextEntry={true}
                             onChangeText={handleChange('confirm_password')}
@@ -161,7 +161,7 @@ export default function Register() {
 
                         <PhoneNumber 
                             sx={{width: '100%'}}
-                            label="Phone Number"
+                            label="আপনার ফোন নম্বর লিখুন"
                             onChangeText={ev => {
                                 handleChange('phone')(ev)
                                 setServerErrors(prevState => ({...prevState, phone: false}))
@@ -173,7 +173,7 @@ export default function Register() {
 
                         <DatePicker
                             sx={{width: '48%'}}
-                            label="Date of Birth"
+                            label="জন্ম তারিখ"
                             date={values.date_of_birth}
                             onDateChange={handleChange('date_of_birth')}
                             error={touched.date_of_birth && errors.date_of_birth}
@@ -181,7 +181,7 @@ export default function Register() {
                         />
 
                         <DropdownSelect
-                            label="Blood Group"
+                            label="রক্তের গ্রুপ"
                             error={touched.blood_group && errors.blood_group}
                             onBlur={handleBlur('blood_group')}
                             labelStyle={{
@@ -194,11 +194,11 @@ export default function Register() {
                                 marginTop: 0,
                             }}
                             selectedValue={values.blood_group}
-                            placeholder="Select Group"
+                            placeholder="গ্রুপ নির্বাচন করুন"
                             onValueChange={handleChange('blood_group')}
                             dropdownContainerStyle={{
                                 width: '48%',
-                                marginTop: 8,
+                                marginTop: 12,
                                 height: 50,
                             }}
                             dropdownStyle={{
@@ -231,8 +231,8 @@ export default function Register() {
                              minHeight: 80,
                              textAlignVertical: 'top',
                            }}
-                            label="Location/Address"
-                            placeholder='Enter your location'
+                            label="আপনার ঠিকানা লিখুন"
+                            placeholder='ওয়ার্ড নং: ১, আলাদিপুর, রাজব...'
                             multiline={true}
                             numberOfLines={4}   
                             onChangeText={handleChange('location')}
@@ -261,7 +261,7 @@ export default function Register() {
                             }}
                         >
                             <Text>
-                                {isSubmitting ? 'Loading...' : 'Submit Now'} </Text>
+                                {isSubmitting ? 'লোড হচ্ছে...' : 'এখনই জমা দিন'} </Text>
                             { !isSubmitting && <Image source={require('@assets/images/angle-right.png')}/> }
                         </Paragraph>
                     </Button>

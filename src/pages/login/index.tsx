@@ -23,16 +23,16 @@ export default function Login() {
     return (
         <View style={{gap: 20}}>
             <AuthInput
-                label="Enter Your Email"
+                label="আপনার ইমেইল লিখুন"
                 placeholder="example@gmail.com"
             />
             <AuthInput
-                label="Enter Your Password"
+                label="আপনার পাসওয়ার্ড লিখুন"
                 placeholder='********'
                 secureTextEntry={true}
             >
                 <Link to="/register" underlayColor="transparent">
-                    <Paragraph sx={{fontSize: 16,fontFamily: 'Rubik-Regular', color: '#ec1f27'}}>Forgot Password?</Paragraph>
+                    <Paragraph sx={{fontSize: 16,fontFamily: 'Rubik-Regular', color: '#ec1f27'}}>পাসওয়ার্ড ভুলে গেছেন?</Paragraph>
                 </Link>
             </AuthInput>
             <Button
@@ -50,7 +50,7 @@ export default function Login() {
                         gap: 10,
                     }}
                 >
-                    <Text>Sign In  </Text>
+                    <Text>সাইন ইন করুন  </Text>
                     <Image source={require('@assets/images/angle-right.png')}/>
                 </Paragraph>
             </Button>
