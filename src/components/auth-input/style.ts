@@ -6,7 +6,7 @@ export const Wrapper = styled.View`
 
 type TextInputProps = {
     isFocused: boolean;
-    error?: string;
+    error?: string | boolean;
 }
 
 export const TextInput = styled.TextInput( (props: TextInputProps) => {

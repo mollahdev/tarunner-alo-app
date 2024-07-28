@@ -54,6 +54,7 @@ export default function PhoneNumber( props: PropsWithChildren<PropsType> ) {
                         }}
                         keyboardType={'phone-pad'}
                         onFocus={() => setIsFocused(true)} 
+                        placeholderTextColor="#91a5b3"
                         onBlur={(ev) => {
                             setIsFocused(false);
                             if (props.onBlur && typeof props.onBlur === 'function') {

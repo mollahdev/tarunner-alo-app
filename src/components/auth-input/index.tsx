@@ -42,6 +42,7 @@ export default function AuthInput( props: PropsWithChildren<PropsType> ) {
         error={props.error}
         value={props.value}
         multiline={props.multiline}
+        placeholderTextColor="#91a5b3"
         numberOfLines={props.numberOfLines}
         onFocus={() => setIsFocused(true)} 
         onBlur={(ev) => {

@@ -36,6 +36,7 @@ export default function Header( props: PropsWithChildren<PropsType> ) {
                     onChange={onSearch}
                     onFocus={() => props.searchFocused(true)}
                     onBlur={() => props.searchFocused(false)}
+                    placeholderTextColor="#91a5b3"
                     placeholder="সদস্যদের খুঁজুন" />
             </HeaderWrapper>
         </View>

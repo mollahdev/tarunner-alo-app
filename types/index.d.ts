@@ -1,6 +1,7 @@
 type RoleType = 'admin' | 'editor' | 'member' | 'guest';
 type BloodGroup = 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
 type UserStatus = 'active' | 'inactive' | 'pending' | 'blocked';
+type Email = `${string}@${string}.${string}`;
 
 interface ImageType {
     uri: string
@@ -11,7 +12,7 @@ interface ImageType {
 interface RegisterUserForm {
     first_name: string
     last_name: string
-    email: `${string}@${string}.${string}`
+    email: Email
     password: string
     confirm_password: string
     phone: string
@@ -28,7 +29,14 @@ interface RegisterUserApiResponse extends Omit<RegisterUserForm, 'avatar'> {
     access_token: string
     avatar: string
     id: number
-    is_email_verified: 'yes' | 'no',
-    is_phone_verified: 'yes' | 'no',
+    is_email_verified: 'yes' | 'no'
+    is_phone_verified: 'yes' | 'no'
     username: string
+    access_token: string
+    status: UserStatus
+}
+
+interface LoginUserForm {
+    email: Email
+    password: string
 }

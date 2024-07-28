@@ -2,9 +2,12 @@
  * Native Dependencies 
  */ 
 import { View, Text, Image, ToastAndroid } from 'react-native';
+import { useState } from 'react';
+/**
+ * External dependencies  
+*/ 
 import { default as DropdownSelect } from 'react-native-input-select';
 import { Formik } from 'formik';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-native';
 /**
  * Internal dependencies 
@@ -12,14 +15,9 @@ import { useNavigate } from 'react-router-native';
 import storage from '@src/services/storage';
 import {AuthInput, Button, Paragraph, PhoneNumber, DatePicker, ImagePicker } from '@src/components';
 import { FlexWrapper } from './style';
-import { INITIAL_VALUES, BLOOD_GROUP, registerSchema } from './constants';
+import { INITIAL_VALUES, BLOOD_GROUP, INITIAL_ERROR_VALUE } from './constants';
 import Api from '@src/services/api';
-
-const INITIAL_ERROR_VALUE = {
-    avatar: false,
-    email: false,
-    phone: false
-}
+import { registerSchema } from './schema';
 
 export default function Register() {
     const [serverErrors, setServerErrors] = useState(INITIAL_ERROR_VALUE)
@@ -260,8 +258,7 @@ export default function Register() {
                                 } : {})
                             }}
                         >
-                            <Text>
-                                {isSubmitting ? 'লোড হচ্ছে...' : 'এখনই জমা দিন'} </Text>
+                            <Text>{isSubmitting ? 'লোড হচ্ছে...' : 'এখনই জমা দিন'} </Text>
                             { !isSubmitting && <Image source={require('@assets/images/angle-right.png')}/> }
                         </Paragraph>
                     </Button>
