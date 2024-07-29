@@ -1,25 +1,28 @@
 /**
  * Native dependencies 
  */ 
-import { ScrollView, Modal, Image, ToastAndroid, ActivityIndicator, StyleSheet } from 'react-native';
+import { ScrollView, Modal, Image, ToastAndroid, ActivityIndicator, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { useState, useMemo, useEffect } from 'react';
+/**
+ * External dependencies 
+*/ 
 import { useSelector, useDispatch } from 'react-redux';
 /**
  * Internal dependencies 
  */ 
 import Header from './header';
-// import Data from './data'
 import Item from './Item';
 import InfoCell from './infoCell';
+import Api from '@src/services/api';
 import { ListWrapper, ModalContent, ModalOverlay, ModalOverlayClose } from './style';
 import { Paragraph, EmptyState } from '@src/components';
-import Api from '@src/services/api';
 import { selectUsers, setUsers } from '@src/services/data/users';
+import { COLORS } from '@src/global';
 
 export default function MemberList() {
     const [search, setSearch] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
-    const [selectedItem, setSelectedItem] = useState<ProfileApiResponseWithToken>();
+    const [selectedItem, setSelectedItem] = useState<ProfileApiResponse>();
     const [searchFocused, setSearchFocused] = useState(false);
     const members = useSelector(selectUsers);
     const dispatch = useDispatch();
@@ -43,24 +46,25 @@ export default function MemberList() {
         });
     }, [search, members]);
 
-    const showModal = ( item: ProfileApiResponseWithToken ) => {
+    const showModal = ( item: ProfileApiResponse ) => {
         setSelectedItem(item);
         setModalVisible(true);
     }
 
     return (
         <ScrollView
+            contentContainerStyle={{flexGrow: members?.length === 0 ? 1 : 0}}
             stickyHeaderIndices={[0]}
             showsVerticalScrollIndicator
         >
             <Header search={ search } searchFocused={setSearchFocused} setSearch={setSearch} />
-            { members === null &&  <ActivityIndicator style={[styles.activityIndicator]} size="large" color="#fc0e12"/> }
+            { members === null &&  <ActivityIndicator style={[styles.activityIndicator]} size="large" color={COLORS.primary}/> }
             
             <ListWrapper style={{opacity: searchFocused ? .5 : 1}}>
                 { filteredData?.map(item => <Item onShowInfo={() => showModal(item)} key={item.id} {...item}/> )}
             </ListWrapper>
 
-            { filteredData?.length === 0 && <EmptyState/>}
+            { members?.length === 0 && <EmptyState/>}
 
             { modalVisible && <ModalOverlay/>}
             <Modal

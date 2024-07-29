@@ -1,5 +1,6 @@
 import { Image, ActivityIndicator, StyleSheet, StatusBar } from 'react-native';
 import { Wrapper } from './style';
+import { COLORS } from '@src/global';
 
 export default function AppLoader() {
     return (
@@ -9,7 +10,7 @@ export default function AppLoader() {
                 source={require('@assets/images/logo.jpeg')}
                 style={{ width: 150, height: 150}}
             />
-            <ActivityIndicator style={[styles.activityIndicator]} size="large" color="#fc0e12"/>
+            <ActivityIndicator style={[styles.activityIndicator]} size="large" color={COLORS.primary}/>
         </Wrapper>
     );
 }

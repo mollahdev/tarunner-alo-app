@@ -51,7 +51,7 @@ const AuthEntry = withValidateToken(function() {
                     >অথবা অন্যান্য বিকল্প চেষ্টা করুন</Paragraph>
                 </Divider>
                 <View style={{gap: 7, flexDirection: 'row'}}>
-                    <ViewMemberButton style={{width: '48%'}} to="/member-list" underlayColor="transparent">
+                    <ViewMemberButton style={{width: '48%'}} to="/announcements" underlayColor="transparent">
                         <Paragraph sx={{color: '#e64949', fontFamily: 'Rubik-SemiBold', fontSize: 16, alignItems: 'center'}}>
                             <Image 
                                 style={{

@@ -1,13 +1,13 @@
 /**
  * Native dependencies 
  */ 
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import type { PropsWithChildren } from "react";
 import type { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 /**
  * External dependencies 
  */ 
-import { Link } from 'react-router-native';
+import { useNavigate } from 'react-router-native';
 /**
  * Internal dependencies 
  */
@@ -22,6 +22,7 @@ type PropsType = {
 
 export default function Header( props: PropsWithChildren<PropsType> ) {
     const { search, setSearch } = props;
+    const navigate = useNavigate();
 
     const onSearch = (ev: NativeSyntheticEvent<TextInputChangeEventData>) => {
         setSearch(ev.nativeEvent.text);
@@ -30,7 +31,9 @@ export default function Header( props: PropsWithChildren<PropsType> ) {
     return (
         <View style={ styles.shadowProp }>
             <HeaderWrapper>
-                <Link underlayColor="transparent" to="/login"><BackButton style={{ fontFamily: 'Rubik-SemiBold' }}>ফিরে যান</BackButton></Link>
+                <TouchableWithoutFeedback onPress={() => navigate(-1)}>
+                    <BackButton style={{ fontFamily: 'Rubik-SemiBold' }}>ফিরে যান</BackButton>
+                </TouchableWithoutFeedback>
                 <SearchInput 
                     value={search} 
                     onChange={onSearch}
