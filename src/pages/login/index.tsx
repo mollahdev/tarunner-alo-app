@@ -8,6 +8,7 @@ import { useState } from 'react';
  */ 
 import { useNavigate, Link } from 'react-router-native';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 /**
  * Internal dependencies 
  */
@@ -16,10 +17,12 @@ import { Paragraph, AuthInput, Button } from '@src/components';
 import Api from '@src/services/api';
 import { loginSchema } from './schema';
 import { INITIAL_VALUES, INITIAL_ERROR_VALUE } from './constants';
+import { setCurrentUser } from '@src/services/data/users';
 
 export default function Login() {
     const [serverErrors, setServerErrors] = useState(INITIAL_ERROR_VALUE)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onLogin = async (values: any, { setSubmitting } : any) => {
         setSubmitting(true);
@@ -29,6 +32,8 @@ export default function Login() {
             const response = await Api.User.login(values);
 
             if (response.data) {
+                dispatch(setCurrentUser(response.data));
+
                 storage.set('token', response.data.access_token);
                 navigate('/', { replace: true });
             }

@@ -19,7 +19,7 @@ import { selectUsers, setUsers } from '@src/services/data/users';
 export default function MemberList() {
     const [search, setSearch] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
-    const [selectedItem, setSelectedItem] = useState<RegisterUserApiResponse>();
+    const [selectedItem, setSelectedItem] = useState<ProfileApiResponseWithToken>();
     const [searchFocused, setSearchFocused] = useState(false);
     const members = useSelector(selectUsers);
     const dispatch = useDispatch();
@@ -43,7 +43,7 @@ export default function MemberList() {
         });
     }, [search, members]);
 
-    const showModal = ( item: RegisterUserApiResponse ) => {
+    const showModal = ( item: ProfileApiResponseWithToken ) => {
         setSelectedItem(item);
         setModalVisible(true);
     }

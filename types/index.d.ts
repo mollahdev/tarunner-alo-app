@@ -25,16 +25,17 @@ interface RegisterUserForm {
     plan_id: string
 }
 
-interface RegisterUserApiResponse extends Omit<RegisterUserForm, 'avatar'> {
+interface ProfileApiResponseWithToken extends Omit<RegisterUserForm, 'avatar' | 'password' | 'confirm_password'> {
     access_token: string
     avatar: string
     id: number
     is_email_verified: 'yes' | 'no'
     is_phone_verified: 'yes' | 'no'
     username: string
-    access_token: string
     status: UserStatus
 }
+
+type ProfileApiResponse = Omit<ProfileApiResponseWithToken, 'access_token'>;
 
 interface LoginUserForm {
     email: Email

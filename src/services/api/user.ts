@@ -6,7 +6,7 @@ export default class User extends Base {
     async getList() {
         return this.get<{
             message: string
-            data: RegisterUserApiResponse[]
+            data: ProfileApiResponse[]
         }>('list')
     }
 
@@ -29,7 +29,7 @@ export default class User extends Base {
         
         return this.post<{
             message: string
-            data: RegisterUserApiResponse
+            data: ProfileApiResponseWithToken
         }>('register', data)
     }
 
@@ -41,7 +41,19 @@ export default class User extends Base {
 
         return this.post<{
             message: string
-            data: RegisterUserApiResponse
+            data: ProfileApiResponseWithToken
         }>('login', data)
+    }
+
+    async profile( payload?: string | number ) {
+        let url = 'profile'
+        if (payload) {
+            url = `profile/${payload}`
+        }
+
+        return this.get<{
+            message: string
+            data: ProfileApiResponse
+        }>(url)
     }
 }

@@ -13,7 +13,7 @@ type PropsType = {
     onShowInfo: () => void;
 }
 
-export default function Item( props: PropsWithChildren<RegisterUserApiResponse & PropsType> ) {
+export default function Item( props: PropsWithChildren<ProfileApiResponseWithToken & PropsType> ) {
     const onCall = () => {
         Linking.openURL(`tel:${props.country_code}${props.phone}`);
     }
